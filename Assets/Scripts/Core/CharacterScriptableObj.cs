@@ -6,5 +6,6 @@ using UnityEngine;
 public class CharacterScriptableObj : ScriptableObject
 {
     public GameObject character;
+    public Material[] characterMat;
     public int health;
 }
