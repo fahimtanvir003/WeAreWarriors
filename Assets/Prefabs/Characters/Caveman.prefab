@@ -206,6 +206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1ab54bc34b0c31148893eec8b1a5a844, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1ab54bc34b0c31148893eec8b1a5a844, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.03
@@ -265,8 +269,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 1ab54bc34b0c31148893eec8b1a5a844,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3927566456801044779}
   m_SourcePrefab: {fileID: 100100000, guid: 1ab54bc34b0c31148893eec8b1a5a844, type: 3}
+--- !u!1 &7707858504865839429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 1ab54bc34b0c31148893eec8b1a5a844,
+    type: 3}
+  m_PrefabInstance: {fileID: 7707858504865939429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &3927566456801044779
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707858504865839429}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.30448958, y: 0.8598706, z: 0.27452728}
+  m_Center: {x: 0.0026404539, y: 0.7037004, z: 0.001272843}
 --- !u!4 &7707858504866325861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1ab54bc34b0c31148893eec8b1a5a844,

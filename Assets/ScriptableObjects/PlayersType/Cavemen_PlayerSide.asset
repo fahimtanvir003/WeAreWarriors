@@ -19,4 +19,5 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 8d7251a4328716a4a8774f6cdde61334, type: 2}
   - {fileID: 9171952328373019990, guid: 9d28e056ffbbde44c87a84ae6cf7f122, type: 3}
   health: 5
+  damage: 2
   speed: 0.1

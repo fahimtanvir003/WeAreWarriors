@@ -1,3 +1,5 @@
+using Sirenix.Utilities;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,14 +33,24 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Button_SpawnCharacterFromThePoolOfList()
     {
-        
+        for (int i = 0; i < waves.Length; i++)
+        {
+            for (int j = 0; j < waves[i].spawnnedCharactersList.Count; j++)
+            {
+                int pickRandom = UnityEngine.Random.Range(0, waves[i].spawnnedCharactersList.Count - 1);
+
+                GameObject selectedCharacter = waves[i].spawnnedCharactersList[pickRandom];
+
+                if (!selectedCharacter.activeInHierarchy)
+                {
+                    selectedCharacter.SetActive(true);
+                }
+                break;
+            }
+        }
     }
-
-    
-
 
     [Serializable]
     private class Wave
@@ -52,7 +64,7 @@ public class Spawner : MonoBehaviour
 
         [Space(15)]
 
-        [SerializeField] private List<GameObject> spawnnedCharactersList;
+        public List<GameObject> spawnnedCharactersList;
 
 
         public void SpawnCharacters(Transform leftPos, Transform rightPos, Transform spawnerTrans)
@@ -73,6 +85,7 @@ public class Spawner : MonoBehaviour
             {
                 GameObject obj = Instantiate(character.character, new Vector3(spawnerTrans.position.x, 0.5f, randomZPosition), Quaternion.identity, spawnParent);
                 obj.SetActive(false);
+                //obj.tag = "Hudai";
                 spawnnedCharactersList.Add(obj);
             }
         }
