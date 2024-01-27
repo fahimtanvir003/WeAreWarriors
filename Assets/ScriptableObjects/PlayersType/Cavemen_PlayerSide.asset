@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b229d36ae418b94087ad47d92330da9, type: 3}
   m_Name: Cavemen_PlayerSide
   m_EditorClassIdentifier: 
-  targetName: EnemyHouse
+  weaponScriptableObj: {fileID: 11400000, guid: 42cf2af79064a984ea10dc5b8ec326e1,
+    type: 2}
+  targetHouseName: EnemyHouse
+  characterTag: Player
+  isEnemy: 0
   character: {fileID: 3802433467207242012, guid: e3c299a69797f9946b126ad0d8ce48b7,
     type: 3}
   characterMaterials:
   - {fileID: 2100000, guid: 8d7251a4328716a4a8774f6cdde61334, type: 2}
   - {fileID: 9171952328373019990, guid: 9d28e056ffbbde44c87a84ae6cf7f122, type: 3}
-  health: 5
+  health: 10
   damage: 2
-  speed: 0.1
+  speed: 1.5
+  stoppingDistance: 2
