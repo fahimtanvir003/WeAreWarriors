@@ -11,11 +11,14 @@ public class House : MonoBehaviour
     {
         if (other.CompareTag("Weapon") )
         {
-            if(houseHealth <= 0)
+            if (houseHealth >= 1)
             {
-                //Destroy house
+                houseHealth--;
             }
-            Debug.Log("Damagee");
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

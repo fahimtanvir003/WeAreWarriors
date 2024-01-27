@@ -190,8 +190,11 @@ public class CharacterBehavior : MonoBehaviour
 
     private void TargetTheHouse()
     {
-        _navMeshAgent.SetDestination(new Vector3(target.position.x, _trans.localPosition.y, _trans.localPosition.z));
-        //_navMeshAgent.stoppingDistance = 4f;
+        if (target != null)
+        {
+            _navMeshAgent.SetDestination(new Vector3(target.position.x, _trans.localPosition.y, _trans.localPosition.z));
+        }
+        _navMeshAgent.stoppingDistance = 4f;
     }
 
     private void TargetTheEnemy()

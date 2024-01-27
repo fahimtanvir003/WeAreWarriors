@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 127912911}
   - component: {fileID: 127912910}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: WalkableGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -336,8 +336,8 @@ Transform:
   m_GameObject: {fileID: 127912908}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.001956, y: 0.001, z: 0.00282}
-  m_LocalScale: {x: 0.46075353, y: 1, z: 0.5586489}
+  m_LocalPosition: {x: -0.001956, y: 0.05, z: -0.077}
+  m_LocalScale: {x: 0.529544, y: 1, z: 0.7299865}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1717061788}
@@ -1722,7 +1722,7 @@ GameObject:
   - component: {fileID: 1717061786}
   - component: {fileID: 1717061785}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: MainGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1808,8 +1808,8 @@ Transform:
   m_GameObject: {fileID: 1717061784}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 80, y: 1, z: 20}
+  m_LocalPosition: {x: 0, y: 0, z: 5.3}
+  m_LocalScale: {x: 80, y: 1, z: 25.476}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 127912909}
@@ -2114,7 +2114,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: f34bd803d93633244b33d289adb78013, type: 2}
   m_BuildHeightMesh: 0
