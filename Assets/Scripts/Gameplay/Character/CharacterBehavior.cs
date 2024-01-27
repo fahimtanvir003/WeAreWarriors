@@ -62,7 +62,6 @@ public class CharacterBehavior : MonoBehaviour
         }
 
         CheatDie();
-
     }
     private void FixedUpdate()
     {
@@ -84,8 +83,8 @@ public class CharacterBehavior : MonoBehaviour
         //play VFX
 
         gameObject.SetActive(false);
-        script_EnemyDetection.currentDetectedEnemiesList.Remove(script_EnemyDetection.NearestEnemy);
-        script_EnemyDetection.NearestEnemy = null;
+        ClearDetectedEnemyList();
+
         _trans.position = defaultPos;
     }
     private void ReviveCharacter()
@@ -102,6 +101,10 @@ public class CharacterBehavior : MonoBehaviour
 
         //Play VFX
     }
+
+
+
+
 
     #region Helper Functions
 
@@ -146,7 +149,7 @@ public class CharacterBehavior : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            if (script_EnemyDetection.character.isEnemy)
+            if (!script_EnemyDetection.character.isEnemy)
             {
                 Die();
             }
@@ -164,7 +167,11 @@ public class CharacterBehavior : MonoBehaviour
         //script_CharacterWeapon.E_WeaponCollidedWithEnemy -= StartCombat;
 
     }
-
+    private void ClearDetectedEnemyList()
+    {
+        script_EnemyDetection.currentDetectedEnemiesList.Remove(script_EnemyDetection.NearestEnemy);
+        script_EnemyDetection.NearestEnemy = null;
+    }
     private void InitializeScriptableObjectsReference(CharacterScriptableObj characterScriptableObj)
     {
         script_EnemyDetection.character = characterScriptableObj;

@@ -15,6 +15,7 @@ public class EnemyDetection : MonoBehaviour
     public Transform NearestEnemy;
 
     public Action E_EnemyDetected;
+    private float minimumDist = 5000;
 
     private void Start()
     {
@@ -30,7 +31,6 @@ public class EnemyDetection : MonoBehaviour
     {
         foreach (var enemy in currentDetectedEnemiesList)
         {
-            float minimumDist = 500;
             closestTargetDist = Vector3.Distance(_trans.position, enemy.position);
 
             if (closestTargetDist < minimumDist)
@@ -48,7 +48,10 @@ public class EnemyDetection : MonoBehaviour
         {
             if (other.CompareTag("Enemy"))
             {
-                currentDetectedEnemiesList.Add(other.transform);
+                if (!currentDetectedEnemiesList.Contains(other.transform))
+                {
+                    currentDetectedEnemiesList.Add(other.transform);
+                }
                 E_EnemyDetected?.Invoke();
 
                 Debug.Log("Enemy Detected");
@@ -58,7 +61,10 @@ public class EnemyDetection : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                currentDetectedEnemiesList.Add(other.transform);
+                if (!currentDetectedEnemiesList.Contains(other.transform))
+                {
+                    currentDetectedEnemiesList.Add(other.transform);
+                }
                 E_EnemyDetected?.Invoke();
 
                 Debug.Log("Player Detected");
