@@ -224,7 +224,7 @@ PrefabInstance:
     - target: {fileID: 191643767954853898, guid: e3c299a69797f9946b126ad0d8ce48b7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.73
+      value: -2.95
       objectReference: {fileID: 0}
     - target: {fileID: 191643767954853898, guid: e3c299a69797f9946b126ad0d8ce48b7,
         type: 3}
@@ -276,6 +276,19 @@ PrefabInstance:
       propertyPath: m_Speed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 796698448705421239, guid: e3c299a69797f9946b126ad0d8ce48b7,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 98b8e9f9448ba294ca183f5a93ec14f8, type: 2}
+    - target: {fileID: 796698448705421239, guid: e3c299a69797f9946b126ad0d8ce48b7,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'thigh.R'\n\tTransform 'thigh.L'\n\tTransform
+        'thigh.R'\n\tTransform 'thigh.L'\n\tFrom animation clip 'Walk'"
+      objectReference: {fileID: 0}
     - target: {fileID: 2957716925949264417, guid: e3c299a69797f9946b126ad0d8ce48b7,
         type: 3}
       propertyPath: characterScriptableObj
@@ -303,7 +316,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9171952328373019990, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
         type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3613718282355313917, guid: e3c299a69797f9946b126ad0d8ce48b7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2421,6 +2435,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 796698448705421239, guid: e3c299a69797f9946b126ad0d8ce48b7,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 796698448705421239, guid: e3c299a69797f9946b126ad0d8ce48b7,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 98b8e9f9448ba294ca183f5a93ec14f8, type: 2}
+    - target: {fileID: 796698448705421239, guid: e3c299a69797f9946b126ad0d8ce48b7,
+        type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796698448705421239, guid: e3c299a69797f9946b126ad0d8ce48b7,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 796698448705421239, guid: e3c299a69797f9946b126ad0d8ce48b7,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2957716925949264417, guid: e3c299a69797f9946b126ad0d8ce48b7,
         type: 3}
       propertyPath: rb
@@ -2525,6 +2564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3299272814208788702, guid: e3c299a69797f9946b126ad0d8ce48b7, type: 3}
+    - {fileID: 3613718282355313917, guid: e3c299a69797f9946b126ad0d8ce48b7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

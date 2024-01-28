@@ -39,14 +39,12 @@ public class Spawner : MonoBehaviour
     private void Awake()
     {
         _trans = transform;
-    }
 
-    void Start()
-    {
         foreach (Wave wave in waves)
         {
             wave.SpawnCharacters(leftPos, rightPos, _trans);
         }
+
     }
 
     private void Update()

@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,13 +11,16 @@ public class CharacterBehavior : MonoBehaviour
     [Space(5f)]
 
     [SerializeField] private NavMeshAgent _navMeshAgent;
-    [SerializeField] private SkinnedMeshRenderer skinnedMeshRend;
+    [SerializeField] private SkinnedMeshRenderer _skinnedMeshRend;
+    [SerializeField] private Animator _anim;
+
 
     private Transform _trans;
     private Transform target;
     private CharacterState currentState;
     private int defaultHealth;
     public int _health;
+    private float _attackInterval;
     private float _stoppingDistance;
 
     [Space(5f)]
@@ -96,8 +100,8 @@ public class CharacterBehavior : MonoBehaviour
     private void StartCombat()
     {
         currentState = CharacterState.Fighting;
-        _health--;
-        //Play Fight Animation
+
+        _anim.SetTrigger("Attack");
 
         //Play VFX
     }
@@ -176,6 +180,7 @@ public class CharacterBehavior : MonoBehaviour
     {
         script_EnemyDetection.character = characterScriptableObj;
         script_CharacterWeapon.weaponScriptableObj = characterScriptableObj.weaponScriptableObj;
+        script_CharacterWeapon.isEnemyWeapon = characterScriptableObj.isEnemy;
     }
 
     private void InitializePlayerAttributes(CharacterScriptableObj characterScriptableObj)
@@ -184,7 +189,8 @@ public class CharacterBehavior : MonoBehaviour
         _navMeshAgent.speed = characterScriptableObj.speed;
         _health = characterScriptableObj.health;
         _stoppingDistance = characterScriptableObj.stoppingDistance;
-        skinnedMeshRend.materials = characterScriptableObj.characterMaterials;
+        _attackInterval = characterScriptableObj.attackInterval;
+        _skinnedMeshRend.materials = characterScriptableObj.characterMaterials;
         defaultHealth = characterScriptableObj.health;
     }
 
@@ -203,6 +209,24 @@ public class CharacterBehavior : MonoBehaviour
 
         _navMeshAgent.SetDestination(new Vector3(script_EnemyDetection.DetectedNearestEnemy().position.x,
                 _trans.position.y, script_EnemyDetection.DetectedNearestEnemy().position.z));
+
+        if (_navMeshAgent.remainingDistance < 3)
+        {
+            AttackAfterTheInterval();
+        }
+    }
+
+    private void AttackAfterTheInterval()
+    {
+        if (_attackInterval <= 0)
+        {
+            StartCombat();
+            _attackInterval = 1;
+        }
+        else
+        {
+            _attackInterval -= Time.deltaTime;
+        }
     }
 
     public void DecreaseHealth(int damage)

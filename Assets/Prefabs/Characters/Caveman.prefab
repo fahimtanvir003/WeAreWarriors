@@ -49,7 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _navMeshAgent: {fileID: 655927538229548367}
-  skinnedMeshRend: {fileID: 7560463015450780597}
+  _skinnedMeshRend: {fileID: 7560463015450780597}
+  _anim: {fileID: 796698448705421239}
   _health: 0
   script_CharacterWeapon: {fileID: 4888982351735490390}
   script_EnemyDetection: {fileID: 479127763695454549}
@@ -131,6 +132,76 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 191643767954853898}
     m_Modifications:
+    - target: {fileID: -7215042033065230734, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0015
+      objectReference: {fileID: 0}
+    - target: {fileID: -7215042033065230734, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: -7215042033065230734, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0029
+      objectReference: {fileID: 0}
+    - target: {fileID: -7215042033065230734, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.012145555
+      objectReference: {fileID: 0}
+    - target: {fileID: -7215042033065230734, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.8305395
+      objectReference: {fileID: 0}
+    - target: {fileID: -7215042033065230734, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.51019824
+      objectReference: {fileID: 0}
+    - target: {fileID: -7215042033065230734, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.22305693
+      objectReference: {fileID: 0}
+    - target: {fileID: -7215042033065230734, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -191.972
+      objectReference: {fileID: 0}
+    - target: {fileID: -7215042033065230734, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 23.043
+      objectReference: {fileID: 0}
+    - target: {fileID: -7215042033065230734, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -60.675995
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 98b8e9f9448ba294ca183f5a93ec14f8, type: 2}
+    - target: {fileID: -6057140222963153312, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -208,6 +279,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 479127763695454549}
   m_SourcePrefab: {fileID: 100100000, guid: 9d28e056ffbbde44c87a84ae6cf7f122, type: 3}
+--- !u!95 &796698448705421239 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
+    type: 3}
+  m_PrefabInstance: {fileID: 2377555406860712407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5796210087565161498 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1112810947780112947, guid: 9d28e056ffbbde44c87a84ae6cf7f122,
@@ -378,8 +455,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.30448958, y: 0.9818635, z: 0.29391986}
-  m_Center: {x: 0.0026408902, y: 0.7647038, z: 0.010962496}
+  m_Size: {x: 0.1945056, y: 0.98186344, z: 0.29391986}
+  m_Center: {x: -0.052351374, y: 0.7647052, z: 0.010962296}
 --- !u!114 &4888982351735490390
 MonoBehaviour:
   m_ObjectHideFlags: 0
