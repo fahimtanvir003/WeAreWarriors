@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using static ToonyColorsPro.ShaderGenerator.Enums;
-
 public class CharacterWeapon : MonoBehaviour
 {
     [HideInInspector] public WeaponObject weaponScriptableObj;
