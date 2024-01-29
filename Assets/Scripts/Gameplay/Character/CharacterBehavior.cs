@@ -43,6 +43,8 @@ public class CharacterBehavior : MonoBehaviour
     private void OnDisable()
     {
         UnSubscribeToEvents();
+
+        ResetCharacterHealth();
     }
 
     private void Awake()
@@ -86,16 +88,18 @@ public class CharacterBehavior : MonoBehaviour
     private void Die()
     {
         //play VFX
+        //Play sound 
 
         gameObject.SetActive(false);
         ClearDetectedEnemyList();
 
         _trans.position = defaultPos;
     }
-    private void ReviveCharacter()
+    private void ResetCharacterHealth()
     {
         health = _defaultHealth;
-        gameObject.SetActive(true);
+        _healthSlider.maxValue = health;
+        _healthSlider.value = health;
     }
 
     private void StartCombat()
@@ -173,7 +177,7 @@ public class CharacterBehavior : MonoBehaviour
 
     private void ClearDetectedEnemyList()
     {
-        script_EnemyDetection.currentDetectedEnemiesList.Remove(script_EnemyDetection.NearestEnemy);
+        script_EnemyDetection.currentDetectedEnemiesList.Clear();
         script_EnemyDetection.NearestEnemy = null;
     }
     private void InitializeScriptableObjectsReference(CharacterScriptableObj characterScriptableObj)
@@ -214,7 +218,11 @@ public class CharacterBehavior : MonoBehaviour
         if (_navMeshAgent.remainingDistance <= _stoppingDistanceForEnemyHouse)
         {
             AttackAfterTheInterval();
-            //_anim.SetBool("Walking", false);
+            ToggleWalkingAnimation(false); 
+        }
+        else
+        {
+            ToggleWalkingAnimation(true); 
         }
     }
 
@@ -228,6 +236,11 @@ public class CharacterBehavior : MonoBehaviour
         if (_navMeshAgent.remainingDistance < 3)
         {
             AttackAfterTheInterval();
+            ToggleWalkingAnimation(false);
+        }
+        else
+        {
+            ToggleWalkingAnimation(true);
         }
     }
 
@@ -259,6 +272,11 @@ public class CharacterBehavior : MonoBehaviour
         {
             script_CharacterWeapon.gameObject.tag = "PlayerWeapon";
         }
+    }
+
+    private void ToggleWalkingAnimation(bool state)
+    {
+        _anim.SetBool("Walking", state);
     }
 
     public void DecreaseHealth(int damage)

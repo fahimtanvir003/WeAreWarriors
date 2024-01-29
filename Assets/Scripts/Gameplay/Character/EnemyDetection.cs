@@ -39,6 +39,7 @@ public class EnemyDetection : MonoBehaviour
                 NearestEnemy = enemy;
             }
         }
+        minimumDist = 5000;
         return NearestEnemy;
     }
 
@@ -71,6 +72,7 @@ public class EnemyDetection : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         //NearestEnemy = null;

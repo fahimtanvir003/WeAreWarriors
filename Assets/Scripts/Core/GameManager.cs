@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     {
         UnSubscribeToEvents();   
     }
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     private void Start()
     {
         Time.timeScale = 1;
