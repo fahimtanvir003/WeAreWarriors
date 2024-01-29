@@ -1,11 +1,8 @@
 using Sirenix.Utilities;
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEditor.UIElements;
-
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -18,6 +15,9 @@ public class Spawner : MonoBehaviour
     public Transform rightPos;
 
     [SerializeField] private bool isEnemySpawner;
+    private bool _firstWave;
+
+    [SerializeField] private float _spawnTimerForEnemy = 5f;
 
     [Space(10)]
     [Header("---Waves Attributes---")]
@@ -51,8 +51,21 @@ public class Spawner : MonoBehaviour
     {
         if (isEnemySpawner)
         {
-            SpawnCharactersFromThePoolOfList();
-            isEnemySpawner = false;
+            if (_spawnTimerForEnemy > 0)
+            {
+                _spawnTimerForEnemy -= Time.deltaTime;
+            }
+            else
+            {
+                if (!_firstWave)
+                {
+                    SpawnFirstWave();
+                }
+                else
+                {
+                    SpawnRandomWaves();
+                }
+            }
         }
     }
 
@@ -87,7 +100,23 @@ public class Spawner : MonoBehaviour
         character.layer = _characterLayerNumberToExcludeFromHouseCollider;
         character.SetActive(true);
     }
+    private void SpawnFirstWave()
+    {
+        SpawnCharactersFromThePoolOfList();
+        _spawnTimerForEnemy = 20;
+        _firstWave = true;
+    }
+    private void SpawnRandomWaves()
+    {
+        int spawnAmount = Mathf.FloorToInt(UnityEngine.Random.Range(0, 3f));
+        
+        for (int i = 0; i < spawnAmount; i++)
+        {
+            SpawnCharactersFromThePoolOfList();
 
+            _spawnTimerForEnemy = UnityEngine.Random.Range(12f, 60f);
+        }
+    }
     #endregion
 
     [Serializable]

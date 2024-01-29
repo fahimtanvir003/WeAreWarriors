@@ -1090,8 +1090,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2044821943048662762, guid: 033b20a68e80df544afd34cb3a89afdd,
         type: 3}
+      propertyPath: _maxSpawnTimerForEnemy
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044821943048662762, guid: 033b20a68e80df544afd34cb3a89afdd,
+        type: 3}
       propertyPath: waves.Array.data[0].characterAmnt
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2044821943048662762, guid: 033b20a68e80df544afd34cb3a89afdd,
         type: 3}
@@ -1117,7 +1122,7 @@ PrefabInstance:
     - target: {fileID: 8017685250529628169, guid: 033b20a68e80df544afd34cb3a89afdd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.78
+      value: 19.39
       objectReference: {fileID: 0}
     - target: {fileID: 8017685250529628169, guid: 033b20a68e80df544afd34cb3a89afdd,
         type: 3}
@@ -1325,6 +1330,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3665884690538041526}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1843687020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1843687021}
+  m_Layer: 0
+  m_Name: VFX_Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1843687021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843687020}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2115215548}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1971834061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,6 +1722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2115215548}
+  - component: {fileID: 2115215549}
   m_Layer: 0
   m_Name: VFX
   m_TagString: Untagged
@@ -1708,8 +1745,27 @@ Transform:
   m_Children:
   - {fileID: 493442601}
   - {fileID: 203452671}
+  - {fileID: 1843687021}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2115215549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115215547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4096a5a9319478247a62212403f82629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vfxPoolTrans: {fileID: 1843687021}
+  _vfxPools:
+  - effectPrefab: {fileID: 167524, guid: fdac75e990da47649b31f10049c400b0, type: 3}
+    effectName: Blood
+    _spawnAmount: 5
+    vfxList: []
 --- !u!1001 &1247339996385049330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1874,7 +1930,7 @@ PrefabInstance:
     - target: {fileID: 2044821943048662762, guid: 033b20a68e80df544afd34cb3a89afdd,
         type: 3}
       propertyPath: waves.Array.data[0].characterAmnt
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2044821943048662762, guid: 033b20a68e80df544afd34cb3a89afdd,
         type: 3}
@@ -2110,7 +2166,7 @@ PrefabInstance:
     - target: {fileID: 3170510124316872669, guid: a2d9e4471c3d34641873daaac415e933,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.1
+      value: 21.71
       objectReference: {fileID: 0}
     - target: {fileID: 3170510124316872669, guid: a2d9e4471c3d34641873daaac415e933,
         type: 3}

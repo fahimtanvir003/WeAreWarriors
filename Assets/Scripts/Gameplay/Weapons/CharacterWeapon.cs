@@ -29,7 +29,7 @@ public class CharacterWeapon : MonoBehaviour
         if (other.CompareTag("Enemy") && !isEnemyWeapon)
         {
             E_WeaponCollidedWithOppositeCharacter?.Invoke(other.GetComponent<CharacterBehavior>());
-            //other.GetComponent<CharacterBehavior>().DecreaseHealth(_damage);
+            VfxPool.instance.PlayVfx("Blood", transform.position, Quaternion.identity);
         }
         if (other.CompareTag("Player") && isEnemyWeapon)
         {

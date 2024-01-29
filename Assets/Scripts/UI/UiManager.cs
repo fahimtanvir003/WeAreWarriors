@@ -30,12 +30,6 @@ public class UiManager : MonoBehaviour
         SubscribeToEvents();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void ManageLockingAndUnlockingOfSpawnButtons()
     {
         foreach (var button in _spawnButtonList)
