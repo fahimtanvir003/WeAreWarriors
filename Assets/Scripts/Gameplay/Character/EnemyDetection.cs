@@ -11,35 +11,31 @@ public class EnemyDetection : MonoBehaviour
     private Transform _trans;
     public List<Transform> currentDetectedEnemiesList;
 
-    private float closestTargetDist;
+    private float _closestTargetDist;
     public Transform NearestEnemy;
 
     public Action E_EnemyDetected;
-    private float minimumDist = 5000;
+    private float _minimumDist = 5000;
 
     private void Start()
     {
         _trans = transform;
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
 
     public Transform DetectedNearestEnemy()
     {
         foreach (var enemy in currentDetectedEnemiesList)
         {
-            closestTargetDist = Vector3.Distance(_trans.position, enemy.position);
+            _closestTargetDist = Vector3.Distance(_trans.position, enemy.position);
 
-            if (closestTargetDist < minimumDist)
+            if (_closestTargetDist < _minimumDist)
             {
-                minimumDist = closestTargetDist;
+                _minimumDist = _closestTargetDist;
                 NearestEnemy = enemy;
             }
         }
-        minimumDist = 5000;
+        _minimumDist = 5000;
         return NearestEnemy;
     }
 
@@ -54,8 +50,6 @@ public class EnemyDetection : MonoBehaviour
                     currentDetectedEnemiesList.Add(other.transform);
                 }
                 E_EnemyDetected?.Invoke();
-
-                Debug.Log("Enemy Detected");
             }
         }
         else
@@ -67,15 +61,8 @@ public class EnemyDetection : MonoBehaviour
                     currentDetectedEnemiesList.Add(other.transform);
                 }
                 E_EnemyDetected?.Invoke();
-
-                Debug.Log("Player Detected");
             }
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        //NearestEnemy = null;
-        //currentDetectedEnemiesList.Clear();
-    }
 }

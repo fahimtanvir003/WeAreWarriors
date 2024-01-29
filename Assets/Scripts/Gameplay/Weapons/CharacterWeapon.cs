@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using static ToonyColorsPro.ShaderGenerator.Enums;
+
 public class CharacterWeapon : MonoBehaviour
 {
     [HideInInspector] public WeaponObject weaponScriptableObj;
@@ -31,15 +33,19 @@ public class CharacterWeapon : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && !isEnemyWeapon)
         {
-            E_WeaponCollidedWithOppositeCharacter?.Invoke(other.GetComponent<CharacterBehavior>());
-
-            VfxPool.instance.PlayVfx("Blood", _trans.position, Quaternion.identity);
+            RegisterHitWithVfxAndSfx(other);
         }
         if (other.CompareTag("Player") && isEnemyWeapon)
         {
-            E_WeaponCollidedWithOppositeCharacter?.Invoke(other.GetComponent<CharacterBehavior>());
-
-            VfxPool.instance.PlayVfx("Blood", _trans.position, Quaternion.identity);
+            RegisterHitWithVfxAndSfx(other);
         }
+    }
+
+    private void RegisterHitWithVfxAndSfx(Collider other)
+    {
+        E_WeaponCollidedWithOppositeCharacter?.Invoke(other.GetComponent<CharacterBehavior>());
+
+        VfxPool.instance.PlayVfx("Blood", _trans.position, Quaternion.identity);
+        AudioManager.instance.PlaySound("Hit");
     }
 }
