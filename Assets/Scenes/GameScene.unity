@@ -1096,7 +1096,7 @@ PrefabInstance:
     - target: {fileID: 2044821943048662762, guid: 033b20a68e80df544afd34cb3a89afdd,
         type: 3}
       propertyPath: waves.Array.data[0].characterAmnt
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2044821943048662762, guid: 033b20a68e80df544afd34cb3a89afdd,
         type: 3}
@@ -1764,6 +1764,10 @@ MonoBehaviour:
   _vfxPools:
   - effectPrefab: {fileID: 167524, guid: fdac75e990da47649b31f10049c400b0, type: 3}
     effectName: Blood
+    _spawnAmount: 15
+    vfxList: []
+  - effectPrefab: {fileID: 183926, guid: 96d8221c1bb8b404fb8cd7080f372017, type: 3}
+    effectName: Blast
     _spawnAmount: 5
     vfxList: []
 --- !u!1001 &1247339996385049330
@@ -1930,7 +1934,7 @@ PrefabInstance:
     - target: {fileID: 2044821943048662762, guid: 033b20a68e80df544afd34cb3a89afdd,
         type: 3}
       propertyPath: waves.Array.data[0].characterAmnt
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2044821943048662762, guid: 033b20a68e80df544afd34cb3a89afdd,
         type: 3}

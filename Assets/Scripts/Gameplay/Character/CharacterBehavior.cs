@@ -87,7 +87,7 @@ public class CharacterBehavior : MonoBehaviour
 
     private void Die()
     {
-        //play VFX
+        VfxPool.instance.PlayVfx("Blast", _trans.position, Quaternion.identity);
         //Play sound 
 
         gameObject.SetActive(false);
@@ -107,8 +107,6 @@ public class CharacterBehavior : MonoBehaviour
         _currentState = CharacterState.Fighting;
 
         _anim.SetTrigger("Attack");
-
-        //Play VFX
     }
 
 

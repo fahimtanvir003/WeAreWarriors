@@ -103,7 +103,7 @@ public class Spawner : MonoBehaviour
     private void SpawnFirstWave()
     {
         SpawnCharactersFromThePoolOfList();
-        _spawnTimerForEnemy = 20;
+        _spawnTimerForEnemy = 45;
         _firstWave = true;
     }
     private void SpawnRandomWaves()

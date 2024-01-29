@@ -42,12 +42,18 @@ public class VfxPool : MonoBehaviour
                     vfx.transform.SetLocalPositionAndRotation(_position, _rotation);
                     vfx.SetActive(true);
 
+                    StartCoroutine(TurnOffVfx(vfx));
                     break;
                 }
             }
         }
     }
 
+    private IEnumerator TurnOffVfx(GameObject obj)
+    {
+        yield return new WaitForSeconds(2f);
+        obj.SetActive(false);
+    }
 
     [Serializable]
     private class VfxPools

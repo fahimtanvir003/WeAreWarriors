@@ -9,10 +9,13 @@ public class CharacterWeapon : MonoBehaviour
     public int _damage;
     public bool isEnemyWeapon;
 
+    private Transform _trans;
+
     public Action<CharacterBehavior> E_WeaponCollidedWithOppositeCharacter;
 
     private void Start()
     {
+        _trans = transform;
         Initialize();
     }
 
@@ -29,12 +32,14 @@ public class CharacterWeapon : MonoBehaviour
         if (other.CompareTag("Enemy") && !isEnemyWeapon)
         {
             E_WeaponCollidedWithOppositeCharacter?.Invoke(other.GetComponent<CharacterBehavior>());
-            VfxPool.instance.PlayVfx("Blood", transform.position, Quaternion.identity);
+
+            VfxPool.instance.PlayVfx("Blood", _trans.position, Quaternion.identity);
         }
         if (other.CompareTag("Player") && isEnemyWeapon)
         {
             E_WeaponCollidedWithOppositeCharacter?.Invoke(other.GetComponent<CharacterBehavior>());
-            //other.GetComponent<CharacterBehavior>().DecreaseHealth(_damage);;
+
+            VfxPool.instance.PlayVfx("Blood", _trans.position, Quaternion.identity);
         }
     }
 }
