@@ -202,7 +202,7 @@ public class CharacterBehavior : MonoBehaviour
 
     private void SimulateHit(CharacterBehavior script_CharacterBehavior)
     {
-        script_CharacterBehavior.DecreaseHealth(script_CharacterWeapon._damage);
+        script_CharacterBehavior.DecreaseHealth(script_CharacterWeapon.damage);
     }
 
     private void TargetTheHouse()

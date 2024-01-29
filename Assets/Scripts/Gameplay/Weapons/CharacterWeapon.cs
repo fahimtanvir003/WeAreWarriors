@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterWeapon : MonoBehaviour
 {
     [HideInInspector] public WeaponObject weaponScriptableObj;
-    public int _damage;
+    public int damage;
     public bool isEnemyWeapon;
 
     private Transform _trans;
@@ -25,7 +25,7 @@ public class CharacterWeapon : MonoBehaviour
     }
     void Initialize()
     {
-        _damage = weaponScriptableObj.damage;
+        damage = weaponScriptableObj.damage;
     }
     private void OnTriggerEnter(Collider other)
     {
