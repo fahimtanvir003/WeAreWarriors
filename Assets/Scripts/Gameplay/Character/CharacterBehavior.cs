@@ -21,7 +21,8 @@ public class CharacterBehavior : MonoBehaviour
     private int _defaultHealth;
     public int health;
     private float _attackInterval;
-    private float _stoppingDistance;
+    private float _stoppingDistanceForEnemy;
+    private float _stoppingDistanceForEnemyHouse;
 
     [Space(5f)]
     [Header("---Script Reference---")]
@@ -187,7 +188,8 @@ public class CharacterBehavior : MonoBehaviour
         gameObject.tag = characterScriptableObj.characterTag;
         _navMeshAgent.speed = characterScriptableObj.speed;
         health = characterScriptableObj.health;
-        _stoppingDistance = characterScriptableObj.stoppingDistance;
+        _stoppingDistanceForEnemy = characterScriptableObj.stoppingDistanceForEnemy;
+        _stoppingDistanceForEnemyHouse = characterScriptableObj.stoppingDistanceForEnemyHouse;
         _attackInterval = characterScriptableObj.attackInterval;
         _skinnedMeshRend.materials = characterScriptableObj.characterMaterials;
         _defaultHealth = characterScriptableObj.health;
@@ -207,12 +209,18 @@ public class CharacterBehavior : MonoBehaviour
         {
             _navMeshAgent.SetDestination(new Vector3(_target.position.x, _trans.localPosition.y, _trans.localPosition.z));
         }
-        //_navMeshAgent.stoppingDistance = 4f;
+        _navMeshAgent.stoppingDistance = _stoppingDistanceForEnemyHouse;
+
+        if (_navMeshAgent.remainingDistance <= _stoppingDistanceForEnemyHouse)
+        {
+            AttackAfterTheInterval();
+            //_anim.SetBool("Walking", false);
+        }
     }
 
     private void TargetTheEnemy()
     {
-        _navMeshAgent.stoppingDistance = _stoppingDistance;
+        _navMeshAgent.stoppingDistance = _stoppingDistanceForEnemy;
 
         _navMeshAgent.SetDestination(new Vector3(script_EnemyDetection.DetectedNearestEnemy().position.x,
                 _trans.position.y, script_EnemyDetection.DetectedNearestEnemy().position.z));

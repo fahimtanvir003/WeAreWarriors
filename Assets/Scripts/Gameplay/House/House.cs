@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class House : MonoBehaviour
 
     [SerializeField] private float _houseHealth;
     [SerializeField] private HouseParty houseRole;
+
+    public Action E_HouseDestroyed;
 
     private void Start()
     {
@@ -22,14 +25,15 @@ public class House : MonoBehaviour
         {
             if (other.CompareTag("EnemyWeapon"))
             {
-                if (_houseHealth >= 1)
+                if (_houseHealth > 0)
                 {
                     _houseHealth--;
                     _healthSlider.value = _houseHealth;
                 }
                 else
                 {
-                    Destroy(gameObject);
+                    E_HouseDestroyed?.Invoke();
+                    Destroy(transform.parent.gameObject);
                 }
             }
         }
@@ -37,14 +41,15 @@ public class House : MonoBehaviour
         {
             if (other.CompareTag("PlayerWeapon"))
             {
-                if (_houseHealth >= 1)
+                if (_houseHealth > 0)
                 {
                     _houseHealth--;
                     _healthSlider.value = _houseHealth;
                 }
                 else
                 {
-                    Destroy(gameObject);
+                    E_HouseDestroyed?.Invoke();
+                    Destroy(transform.parent.gameObject);
                 }
             }
         }

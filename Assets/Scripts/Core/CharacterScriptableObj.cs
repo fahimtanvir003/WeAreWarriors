@@ -15,5 +15,7 @@ public class CharacterScriptableObj : ScriptableObject
     public int damage;
     public float speed;
     public float attackInterval = 1;
-    public float stoppingDistance = 2f;
+    public float stoppingDistanceForEnemy = 2f;
+    public float stoppingDistanceForEnemyHouse = 5f;
+
 }

@@ -6,7 +6,12 @@ using UnityEngine;
 public class UiManager : MonoBehaviour
 {
     [SerializeField] private MeatGeneration script_MeatGeneration;
+    [SerializeField] private LosePanel script_losePanel;
+    [SerializeField] private WinPanel script_winPanel;
+
     [SerializeField] private List<SpawnButton> _spawnButtonList;
+
+    
 
 
     private void OnDisable()
@@ -69,5 +74,15 @@ public class UiManager : MonoBehaviour
     {
         script_MeatGeneration.meatAmount -= amountSpent;
         ManageLockingAndUnlockingOfSpawnButtons();
+    }
+
+    public void TurnOnWinPanel()
+    {
+        script_winPanel.TurnOnWinPanel(script_winPanel.gameObject);
+    }
+
+    public void TurnOnLosePanel()
+    {
+        script_losePanel.TurnOnLosePanel(script_losePanel.gameObject);
     }
 }
