@@ -6,10 +6,10 @@ using UnityEngine;
 public class CharacterWeapon : MonoBehaviour
 {
     [HideInInspector] public WeaponObject weaponScriptableObj;
-    private int _damage;
+    public int _damage;
     public bool isEnemyWeapon;
 
-    public Action E_WeaponCollidedWithEnemy;
+    public Action<CharacterBehavior> E_WeaponCollidedWithOppositeCharacter;
 
     private void Start()
     {
@@ -28,15 +28,13 @@ public class CharacterWeapon : MonoBehaviour
     {
         if (other.CompareTag("Enemy") && !isEnemyWeapon)
         {
-            E_WeaponCollidedWithEnemy?.Invoke();
-            other.GetComponent<CharacterBehavior>().DecreaseHealth(_damage);
-            Debug.Log("HIT");
+            E_WeaponCollidedWithOppositeCharacter?.Invoke(other.GetComponent<CharacterBehavior>());
+            //other.GetComponent<CharacterBehavior>().DecreaseHealth(_damage);
         }
         if (other.CompareTag("Player") && isEnemyWeapon)
         {
-            E_WeaponCollidedWithEnemy?.Invoke();
-            other.GetComponent<CharacterBehavior>().DecreaseHealth(_damage);
-            Debug.Log("HIT of Enemy");
+            E_WeaponCollidedWithOppositeCharacter?.Invoke(other.GetComponent<CharacterBehavior>());
+            //other.GetComponent<CharacterBehavior>().DecreaseHealth(_damage);;
         }
     }
 }

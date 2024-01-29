@@ -1,9 +1,9 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class CharacterBehavior : MonoBehaviour
 {
@@ -13,13 +13,13 @@ public class CharacterBehavior : MonoBehaviour
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private SkinnedMeshRenderer _skinnedMeshRend;
     [SerializeField] private Animator _anim;
-
+    [SerializeField] private Slider _healthSlider;
 
     private Transform _trans;
-    private Transform target;
-    private CharacterState currentState;
-    private int defaultHealth;
-    public int _health;
+    private Transform _target;
+    private CharacterState _currentState;
+    private int _defaultHealth;
+    public int health;
     private float _attackInterval;
     private float _stoppingDistance;
 
@@ -60,7 +60,7 @@ public class CharacterBehavior : MonoBehaviour
 
     void Update()
     {
-        if (_health <= 0)
+        if (health <= 0)
         {
             Die();
         }
@@ -69,7 +69,7 @@ public class CharacterBehavior : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (currentState != CharacterState.Fighting)
+        if (_currentState != CharacterState.Fighting)
         {
             MoveCharacter();
         }
@@ -79,7 +79,7 @@ public class CharacterBehavior : MonoBehaviour
     {
         SetNavmeshAndAppropriateTarget();
 
-        currentState = CharacterState.Running;
+        _currentState = CharacterState.Running;
     }
 
     private void Die()
@@ -93,13 +93,13 @@ public class CharacterBehavior : MonoBehaviour
     }
     private void ReviveCharacter()
     {
-        _health = defaultHealth;
+        health = _defaultHealth;
         gameObject.SetActive(true);
     }
 
     private void StartCombat()
     {
-        currentState = CharacterState.Fighting;
+        _currentState = CharacterState.Fighting;
 
         _anim.SetTrigger("Attack");
 
@@ -116,13 +116,13 @@ public class CharacterBehavior : MonoBehaviour
     {
         if (!characterScriptableObj.isEnemy)
         {
-            target = GameObject.Find(characterScriptableObj.targetHouseName).transform;
+            _target = GameObject.Find(characterScriptableObj.targetHouseName).transform;
             SetCharacterInitialRotation(0);
             SetMainWeaponLayer(7);
         }
         else
         {
-            target = GameObject.Find(characterScriptableObj.targetHouseName).transform;
+            _target = GameObject.Find(characterScriptableObj.targetHouseName).transform;
             SetCharacterInitialRotation(180);
             SetMainWeaponLayer(8);
         }
@@ -162,15 +162,14 @@ public class CharacterBehavior : MonoBehaviour
 
     private void SubscribeToEvents()
     {
-        //script_CharacterWeapon.E_WeaponCollidedWithEnemy += StartCombat;
-
+        script_CharacterWeapon.E_WeaponCollidedWithOppositeCharacter += SimulateHit;
     }
 
     private void UnSubscribeToEvents()
     {
-        //script_CharacterWeapon.E_WeaponCollidedWithEnemy -= StartCombat;
-
+        script_CharacterWeapon.E_WeaponCollidedWithOppositeCharacter -= SimulateHit;
     }
+
     private void ClearDetectedEnemyList()
     {
         script_EnemyDetection.currentDetectedEnemiesList.Remove(script_EnemyDetection.NearestEnemy);
@@ -187,20 +186,28 @@ public class CharacterBehavior : MonoBehaviour
     {
         gameObject.tag = characterScriptableObj.characterTag;
         _navMeshAgent.speed = characterScriptableObj.speed;
-        _health = characterScriptableObj.health;
+        health = characterScriptableObj.health;
         _stoppingDistance = characterScriptableObj.stoppingDistance;
         _attackInterval = characterScriptableObj.attackInterval;
         _skinnedMeshRend.materials = characterScriptableObj.characterMaterials;
-        defaultHealth = characterScriptableObj.health;
+        _defaultHealth = characterScriptableObj.health;
+
+        SetHealthProperties(characterScriptableObj);
+        SetWeaponTagAccordingly(characterScriptableObj);
+    }
+
+    private void SimulateHit(CharacterBehavior script_CharacterBehavior)
+    {
+        script_CharacterBehavior.DecreaseHealth(script_CharacterWeapon._damage);
     }
 
     private void TargetTheHouse()
     {
-        if (target != null)
+        if (_target != null)
         {
-            _navMeshAgent.SetDestination(new Vector3(target.position.x, _trans.localPosition.y, _trans.localPosition.z));
+            _navMeshAgent.SetDestination(new Vector3(_target.position.x, _trans.localPosition.y, _trans.localPosition.z));
         }
-        _navMeshAgent.stoppingDistance = 4f;
+        //_navMeshAgent.stoppingDistance = 4f;
     }
 
     private void TargetTheEnemy()
@@ -229,9 +236,27 @@ public class CharacterBehavior : MonoBehaviour
         }
     }
 
+    private void SetHealthProperties(CharacterScriptableObj characterScriptableObj)
+    {
+        _healthSlider.maxValue = characterScriptableObj.health;
+        _healthSlider.value = characterScriptableObj.health;
+    }
+    private void SetWeaponTagAccordingly(CharacterScriptableObj characterScriptableObj)
+    {
+        if (characterScriptableObj.isEnemy)
+        {
+            script_CharacterWeapon.gameObject.tag = "EnemyWeapon";
+        }
+        else
+        {
+            script_CharacterWeapon.gameObject.tag = "PlayerWeapon";
+        }
+    }
+
     public void DecreaseHealth(int damage)
     {
-        _health -= damage;
+        health -= damage;
+        _healthSlider.value = health;
     }
     #endregion
 }

@@ -68,5 +68,6 @@ public class UiManager : MonoBehaviour
     private void SubstractMeatAmountOnButtonPress(int amountSpent)
     {
         script_MeatGeneration.meatAmount -= amountSpent;
+        ManageLockingAndUnlockingOfSpawnButtons();
     }
 }

@@ -1,23 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; 
 
 public class House : MonoBehaviour
 {
-    [SerializeField] private float houseHealth;
+    [SerializeField] private Slider _healthSlider;
+
+    [SerializeField] private float _houseHealth;
     [SerializeField] private HouseParty houseRole;
+
+    private void Start()
+    {
+        _healthSlider.maxValue = _houseHealth;
+        _healthSlider.value = _houseHealth;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Weapon") )
+        if (houseRole == HouseParty.Player)
         {
-            if (houseHealth >= 1)
+            if (other.CompareTag("EnemyWeapon"))
             {
-                houseHealth--;
+                if (_houseHealth >= 1)
+                {
+                    _houseHealth--;
+                    _healthSlider.value = _houseHealth;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
-            else
+        }
+        else
+        {
+            if (other.CompareTag("PlayerWeapon"))
             {
-                Destroy(gameObject);
+                if (_houseHealth >= 1)
+                {
+                    _houseHealth--;
+                    _healthSlider.value = _houseHealth;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
